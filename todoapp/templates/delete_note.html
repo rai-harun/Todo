@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Delete | TodoApp{% endblock title %}
+{% block content %}
+<div class="container">
+    <form action="" method="POST">
+        <div class="card text-center">
+            <div class="card-header">
+                Delete a note?
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Are sure to delete it?</h5>
+                <p class="card-text text-danger">Confirm before taking this action!!</p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
+                <a href="{% url 'deletenote' %}" class="btn btn-primary">Confirm</a>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

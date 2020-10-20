@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Home | TodoApp{% endblock title %}
+{% block content %}
+<div class="container my-3">
+    <a href="{% url 'createnote' %}" class="btn btn-success"><span class="glyphicon glyphicon-plus">Create a
+            note</span></a>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">S.N.</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Remarks</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+                {% for data in all_data %}
+        
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{data.title}}</td>
+                    <td>{{data.description}}</td>
+                    <td>{{data.remarks}}</td>
+                    <td>{{data.created_date}}</td>
+                    <td><a href="{% url 'updatenote' data.id%}" class="btn btn-info">Edit</a></td>
+                    <td><a data-target="#exampleModal" data-toggle="modal" class="btn btn-danger">Remove</a></td>
+                    <!-- Button trigger modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure that you want to delete it?
+                                    </h5>
+                                    <button type="button" class="btn-close" data-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-danger">
+                                    Confirm before you delete "{{data.title}}"!!!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="{% url 'deletenote' data.id%}" class="btn btn-primary">Confirm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
